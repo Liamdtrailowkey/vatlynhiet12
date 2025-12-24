@@ -112,12 +112,12 @@
             color: white;
         }
 
-        /* Theme Toggle */
+        /* Theme Toggle (ĐÃ SỬA: Tăng Z-index và độ nhạy) */
         .theme-toggle {
             position: fixed;
             top: 15px;
             right: 15px;
-            z-index: 100;
+            z-index: 9999; /* Đảm bảo luôn nằm trên cùng */
             width: 44px;
             height: 44px;
             border-radius: 50%;
@@ -130,6 +130,8 @@
             border: 1px solid var(--glass-border);
             color: var(--text-color);
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            touch-action: manipulation; /* Tối ưu cho thao tác chạm */
+            -webkit-transform: translate3d(0,0,0); /* Hack để force layer riêng trên iOS */
         }
 
         /* --- SECTIONS (PAGES) --- */
@@ -139,6 +141,8 @@
             padding: 20px 15px; /* Giảm padding trên mobile */
             opacity: 0;
             animation: fadeIn 0.4s forwards;
+            position: relative;
+            z-index: 1; /* Thấp hơn toggle button */
         }
 
         section.active {
@@ -187,7 +191,7 @@
         #menu-page {
             flex-direction: column;
             align-items: center;
-            padding-top: 70px; /* Tránh đè lên nút theme */
+            padding-top: 80px; /* Tăng thêm chút để chắc chắn không che nút */
             display: none;
         }
         
@@ -270,7 +274,7 @@
         /* 3. LESSON DETAIL PAGE */
         #lesson-page {
             display: none;
-            padding-top: 70px;
+            padding-top: 80px; /* Tăng padding để tránh che */
             padding-bottom: 40px;
         }
 
